@@ -1,0 +1,333 @@
+{
+	"info": {
+		"_postman_id": "fe2f4171-652b-4515-a056-ae4dde908382",
+		"name": "RestaurantAPI",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "22766057"
+	},
+	"item": [
+		{
+			"name": "CreateMenu",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n   \t\"dayNumber\": 1,\r\n\t\r\n\t\"restaurantId\": \"coffee and study\",\r\n\t\r\n\t\"currencyType\":3,\r\n\t\r\n\t \"menuItems\": [{\"name\": \"pasta\", \"description\" : \"yag\", \"price\": 153.06}, {\"name\": \"kola\", \"description\" : \"zeytinyagli\", \"price\": 95.06}]\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://127.0.0.1:8080/restaurant/menu",
+					"protocol": "http",
+					"host": [
+						"127",
+						"0",
+						"0",
+						"1"
+					],
+					"port": "8080",
+					"path": [
+						"restaurant",
+						"menu"
+					]
+				},
+				"description": "Creates menu by restaurant if there is not a menu with mention restaurant and day.\n\nRequestBody:\n\ndayNumber : Integer {0 -> Monday, 1 -> Tuesday, 2 - > Wednesday, 3 -> Thursday, 4 -> Friday, 5 -> Saturday, 6 -> Sunday } : shows the day of menu which will be created.\n\nrestaurantId : String,\n\ncurrencyType : Integer {0 -> USD, 1 -> EUR, 2 -> JPY, 3 -> GBP, 4 -> TRY}. Specifies the menu currency.\n\nmenuItems : List : The item list that is provided by restaurant to be included in the menu.\n\nMenuItem : {name : String , description : String,\n\nprice: double\n\nResponseBody:\n\nrestaurantName : String,\n\ncurrencyType : Integer\n\nday: Integer,\n\nmenuItems : List : The item list that is provided by restaurant to be included in the menu.\n\nMenuItem : {name : String , description : String,\n\nprice: double}"
+			},
+			"response": []
+		},
+		{
+			"name": "UpdateMenu",
+			"request": {
+				"method": "PUT",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n   \t\"dayNumber\": 5,\r\n\t\r\n\t\"restaurantId\": \"Ulubag\",\r\n\t\r\n\t\"currencyType\":2,\r\n\t\r\n\t \"menuItems\": [{\"name\": \"pasta\", \"description\" : \"yag\", \"price\": 153.06}, {\"name\": \"kola\", \"description\" : \"zeytinyagli\", \"price\": 95.06}]\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://127.0.0.1:8080/restaurant/menu",
+					"protocol": "http",
+					"host": [
+						"127",
+						"0",
+						"0",
+						"1"
+					],
+					"port": "8080",
+					"path": [
+						"restaurant",
+						"menu"
+					]
+				},
+				"description": "StartFragment\n\nCreates menu by restaurant if there is a menu with the given restaurantId and day.\n\nRequestBody:\n\ndayNumber : Integer {0 -> Monday, 1 -> Tuesday, 2 - > Wednesday, 3 -> Thursday, 4 -> Friday, 5 -> Saturday, 6 -> Sunday } : shows the day of menu which will be created.\n\nrestaurantId : String,\n\ncurrencyType : Integer {0 -> USD, 1 -> EUR, 2 -> JPY, 3 -> GBP, 4 -> TRY}. Specifies the menu currency.\n\nmenuItems : List : The item list that is provided by restaurant to be included in the menu.\n\nMenuItem : {name : String , description : String,\n\nprice: double\n\nResponseBody:\n\nrestaurantName : String,\n\ncurrencyType : Integer\n\nday: Integer,\n\nmenuItems : List : The item list that is provided by restaurant to be included in the menu.\n\nMenuItem : {name : String , description : String,\n\nprice: double}\n\nEndFragment"
+			},
+			"response": []
+		},
+		{
+			"name": "DeleteMenu",
+			"request": {
+				"method": "DELETE",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n     \"restaurantId\": \"Ocakbasi\",\r\n     \"day\" : 6\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://127.0.0.1:8080/restaurant/menu",
+					"protocol": "http",
+					"host": [
+						"127",
+						"0",
+						"0",
+						"1"
+					],
+					"port": "8080",
+					"path": [
+						"restaurant",
+						"menu"
+					]
+				},
+				"description": "Deletes the menu if there is a menu with given restaurantId and day.\n\nRequestBody:\n\nrestaurantId : String,\n\nStartFragment\n\n day: Integer {0 -> Monday, 1 -> Tuesday, 2 - > Wednesday, 3 -> Thursday, 4 -> Friday, 5 -> Saturday, 6 -> Sunday }\n\nResponse:\n\nboolean for specifying the validation of the deletion operation.\n\nEndFragment"
+			},
+			"response": []
+		},
+		{
+			"name": "ViewMenus",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://127.0.0.1:8080/restaurant/menu/5",
+					"protocol": "http",
+					"host": [
+						"127",
+						"0",
+						"0",
+						"1"
+					],
+					"port": "8080",
+					"path": [
+						"restaurant",
+						"menu",
+						"5"
+					]
+				},
+				"description": "Returns the menus of the given day.\n\nPathVariable : Integer : Specifies the day. {0 -> Monday, 1 -> Tuesday, 2 - > Wednesday, 3 -> Thursday, 4 -> Friday, 5 -> Saturday, 6 -> Sunday }\n\nResponseBody:\n\nmenus : List\n\n:\n\nStartFragment\n\nrestaurantName : String,\n\ncurrencyType : Integer\n\nday: Integer,\n\nmenuItems : List : The item list that is provided by restaurant to be included in the menu.\n\nMenuItem : {name : String , description : String,\n\nprice: double}\n\nEndFragment"
+			},
+			"response": []
+		},
+		{
+			"name": "CreateOrder",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"day\" : 3,\r\n    \"restaurantId\":\"Ulubag\",\r\n    \"customerId\":\"mcpolitika\",\r\n    \"items\":[\r\n        {\"itemName\" : \"menemen\", \"count\": 3},\r\n        {\"itemName\" : \"tavuk\", \"count\": 5}\r\n    ]\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://127.0.0.1:8080/customer/order",
+					"protocol": "http",
+					"host": [
+						"127",
+						"0",
+						"0",
+						"1"
+					],
+					"port": "8080",
+					"path": [
+						"customer",
+						"order"
+					]
+				},
+				"description": "Creates an order.\n\nResponseBody:\n\nStartFragment\n\nday : Integer {0 -> Monday, 1 -> Tuesday, 2 - > Wednesday, 3 -> Thursday, 4 -> Friday, 5 -> Saturday, 6 -> Sunday } : shows the day of menu which will be created.\n\nrestaurantId : String,\n\ncustomerId : String\n\nmenuItems : List : The item list that is provided by restaurant to be included in the menu.\n\nMenuItem : {name : String , count : Integer}\n\nResponseBody:\n\nid : Integer : id of the order\n\nday: Integer,\n\nrestaurantId: String,\n\nrestaurantName : String,\n\ncustomerId: String\n\ncurrencyType : Integer\n\nmenuItems : List : The item list that is provided by restaurant to be included in the menu.\n\nMenuItem : {name : String, itemName : String, itemPrice : double}\n\nEndFragment"
+			},
+			"response": []
+		},
+		{
+			"name": "CreateCustomer",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"customerId\" : \"Cuneyt\",\r\n    \"adress\" : \"Giresun, sanayi\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://127.0.0.1:8080/customer",
+					"protocol": "http",
+					"host": [
+						"127",
+						"0",
+						"0",
+						"1"
+					],
+					"port": "8080",
+					"path": [
+						"customer"
+					]
+				},
+				"description": "Creates a customer.\n\nRequest:\n\ncustomerId : String\n\nadress : String\n\nReturn:\n\ncustomerId : String"
+			},
+			"response": []
+		},
+		{
+			"name": "CreateRestaurant",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n     \"userId\": \"coffee and study\",\r\n\t \"adress\":\"Trabzon\",\r\n\t \"name\": \"coffee\",\r\n\t \"description\": \"kahve\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://127.0.0.1:8080/restaurant",
+					"protocol": "http",
+					"host": [
+						"127",
+						"0",
+						"0",
+						"1"
+					],
+					"port": "8080",
+					"path": [
+						"restaurant"
+					]
+				},
+				"description": "Creates a restaurant if there is no restaurant with given userId.\n\nRequestBody:\n\nuserId : String,\n\nadress: String,\n\nname: String,\n\ndescription: String\n\nResponseBody:\n\nrestaurantId : String"
+			},
+			"response": []
+		},
+		{
+			"name": "GetCustomerOrders",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://127.0.0.1:8080/customer/order/mcpolitika",
+					"protocol": "http",
+					"host": [
+						"127",
+						"0",
+						"0",
+						"1"
+					],
+					"port": "8080",
+					"path": [
+						"customer",
+						"order",
+						"mcpolitika"
+					]
+				},
+				"description": "returns the order list which is made by customer.\n\nStartFragment\n\n[http://127.0.0.1:8080/customer/order/{customerId}](http://127.0.0.1:8080/customer/order/{customerId})\n\nPathVariable: CustomerId : String\n\nResponseBody:\n\nStartFragment\n\nCreates an order.\n\nResponseBody:\n\nmenus : List of Menu\n\nid : Integer : id of the order\n\nday: Integer,\n\nrestaurantId: String,\n\nrestaurantName : String,\n\ncustomerId: String\n\ncurrencyType : Integer\n\nmenuItems : List : The item list that is provided by r restaurant to be included in the menu.\n\nMenuItem : {name : String, itemName : String, itemPrice : double}\n\nEndFragment"
+			},
+			"response": []
+		},
+		{
+			"name": "GetRestaurantOrders",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://127.0.0.1:8080/restaurant/order/Ocakbasi",
+					"protocol": "http",
+					"host": [
+						"127",
+						"0",
+						"0",
+						"1"
+					],
+					"port": "8080",
+					"path": [
+						"restaurant",
+						"order",
+						"Ocakbasi"
+					]
+				},
+				"description": "StartFragment\n\nreturns the order list which is made by restaurant.\n\nStartFragment\n\n[http://127.0.0.1:8080/restaurant/order/{restaurantId}](https://desktop.postman.com/?desktopVersion=9.31.0&userId=22766057&teamId=0)\n\nPathVariable: restaurantId: String\n\nResponseBody:\n\nid : Integer : id of the order\n\nday: Integer,\n\nrestaurantId: String,\n\nrestaurantName : String,\n\ncustomerId: String\n\ncurrencyType : Integer\n\nmenuItems : List : The item list that is provided by restaurant to be included in the menu.\n\nMenuItem : {name : String, itemName : String, itemPrice : double}\n\nEndFragment"
+			},
+			"response": []
+		},
+		{
+			"name": "GetOrderIdRestaurant",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://127.0.0.1:8080/restaurant/order/Ocakbasi/1",
+					"protocol": "http",
+					"host": [
+						"127",
+						"0",
+						"0",
+						"1"
+					],
+					"port": "8080",
+					"path": [
+						"restaurant",
+						"order",
+						"Ocakbasi",
+						"1"
+					]
+				},
+				"description": "StartFragment\n\nReturns the order object given with restaurantId and order id.\n\n[http://127.0.0.1:8080/restaurant/order/{restaurantId}/{orderId}](http://127.0.0.1:8080/restaurant/order/{restaurantId}/{orderId})\n\nPathVariable : restaurantId : String, orderId : Integer\n\nStartFragment\n\nResponseBody:\n\nStartFragment\n\nCreates an order.\n\nResponseBody:\n\nmenus : List of Menu\n\nid : Integer : id of the order\n\nday: Integer,\n\nrestaurantId: String,\n\nrestaurantName : String,\n\ncustomerId: String\n\ncurrencyType : Integer\n\nmenuItems : List : The item list that is provided by r restaurant to be included in the menu.\n\nMenuItem : {name : String, itemName : String, itemPrice : double}\n\nEndFragment"
+			},
+			"response": []
+		},
+		{
+			"name": "GetOrderIdCustomer",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://127.0.0.1:8080/customer/order/mcpolitika/2",
+					"protocol": "http",
+					"host": [
+						"127",
+						"0",
+						"0",
+						"1"
+					],
+					"port": "8080",
+					"path": [
+						"customer",
+						"order",
+						"mcpolitika",
+						"2"
+					]
+				},
+				"description": "StartFragment\n\nReturns the order object given with restaurantId and order id.\n\n[http://127.0.0.1:8080/restaurant/order/{customerId}/{orderId}](https://desktop.postman.com/?desktopVersion=9.31.0&userId=22766057&teamId=0)\n\nPathVariable : customerId: String, orderId : Integer\n\nStartFragment\n\nResponseBody:\n\nStartFragment\n\nCreates an order.\n\nResponseBody:\n\nid : Integer : id of the order\n\nday: Integer,\n\nrestaurantId: String,\n\nrestaurantName : String,\n\ncustomerId: String\n\ncurrencyType : Integer\n\nmenuItems : List : The item list that is provided by r restaurant to be included in the menu.\n\nMenuItem : {name : String, itemName : String, itemPrice : double}\n\nEndFragment"
+			},
+			"response": []
+		}
+	]
+}
